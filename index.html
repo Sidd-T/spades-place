@@ -1,0 +1,108 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="assets/spade_logo_filled.png" type="image/gif" />
+    <link href="https://fonts.googleapis.com/css?family=Pixelify+Sans" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spades' Place</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Desktop Icons -->
+    <div class="desktop-icons">
+      <div class="desktop-icon" data-container="cafe">
+        <img src="assets/note-icon.png" alt="Cafe" class="icon-image" />
+        <span class="icon-label">Cafe</span>
+      </div>
+      <div class="desktop-icon" data-container="links">
+        <img src="assets/links-icon.png" alt="Links" class="icon-image" />
+        <span class="icon-label">Links</span>
+      </div>
+      <div class="desktop-icon" data-container="about">
+        <img src="assets/spade_logo_filled.png" alt="About" class="icon-image" />
+        <span class="icon-label">About</span>
+      </div>
+    </div>
+
+    <!-- Draggable Windows -->
+    <div class="draggable-container" id="media-window">
+      <div class="container-header">
+        <span>🎵 Media Player</span>
+        <button class="close-btn">×</button>
+      </div>
+      <div class="container-content">
+        <p>Welcome to the Media Player!</p>
+        <p>This window contains your audio and video files.</p>
+        <div class="now-playing">
+          ▶ Now Playing: Retro Vibes.mp3
+        </div>
+      </div>
+    </div>
+
+    <div class="draggable-container" id="cafe-window">
+      <div class="container-header">
+        <span>Where does this hole lead?</span>
+        <button class="close-btn">×</button>
+      </div>
+      <div class="container-content cafe-content">
+        <img src="assets/lake.gif" alt="lake gif" class="cafe-bg cafe-initial" />
+        <img src="assets/hole.gif" alt="hole" class="cafe-overlay cafe-initial" />
+        <img src="assets/room.png" alt="room" class="cafe-bg cafe-next" />
+        <img src="assets/hole2.gif" alt="hole" class="cafe-overlay cafe-next" />
+        <div alt="chatbox" class="cafe-chatbox cafe-next">
+          test
+        </div>
+        <div alt="piano info" class="cafe-piano cafe-next">
+          <h3>Spades' Cafe</h2>
+            <p>Current Player: <strong id="currentPlayer">None</strong></p>
+
+            <input id="nameInput" placeholder="Enter your name" style="width: 70%; font-family: 'Pixelify Sans', sans-serif; background-color: #f0f0f0; border: 2px solid #000; padding: 5px; border-radius: 0;" />
+            <div id="cafeButtons", class="display: flex; margin-top: 5px; gap: 10px;">
+              <button id="joinBtn" class="cafe-piano-btn">Start Playing</button>
+              <button id="leaveBtn" class="cafe-piano-btn">Stop Playing</button>
+            </div>
+            <p id="status" style="font-family: 'Pixelify Sans', sans-serif; font-size: 12px; margin-top: 4px;"></p>
+
+            <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+            <script type="module" src="js/cafe-piano.js"></script>
+        </div>
+        <button class="cafe-toggle-btn" type="button">Enter?</button>
+      </div>
+    </div>
+
+    <div class="draggable-container" id="links-window">
+      <div class="container-header">
+        <span>The Wide World of Web</span>
+        <button class="close-btn">×</button>
+      </div>
+      <div class="container-content links-content">
+        <img src="assets/space.png" alt="space image" class="links-bg" />
+      </div>
+    </div>
+
+    <div class="draggable-container" id="about-window">
+      <div class="container-header">
+        <span>About</span>
+        <button class="close-btn">×</button>
+      </div>
+      <div class="container-content links-content">
+        <h3>Spade's Place</h3>
+        <p>A retro Windows-inspired desktop experience.</p>
+        <p><small>Created with love 💜</small></p>
+      </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+      <a class="taskbar-logo">
+        <img src="assets/button.gif" alt="Logo"/>
+      </a>
+      <div class="taskbar-buttons">
+      </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,330 @@
+body {
+  background-color: #3e4055;
+  background-image: url("https://www.transparenttextures.com/patterns/grid-me.png");
+  background-attachment: fixed;
+  background-repeat: repeat;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Pixelify Sans', sans-serif;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  image-rendering: pixelated;
+}
+
+/* Desktop Icons */
+.desktop-icons {
+  position: fixed;
+  top: 4%;
+  left: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  z-index: 100;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s ease;
+}
+
+.desktop-icon:hover {
+  transform: scale(1.05);
+}
+
+.icon-image {
+  width: 5rem;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.icon-label {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
+
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6%;
+  background-color: 
+#323230;
+  background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
+  border-top: 2px solid #0b1016;
+  border-bottom: 2px solid #0b1016;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  gap: 4px;
+  z-index: 5000;
+  box-shadow: inset 1px 1px 0 #ffffff
+}
+
+.taskbar-logo {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #000080 0%, #1084d7 100%);
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  border: 2px outset #c0c0c0;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 31px;
+  width: 88px;
+  transform: translateX(8px);
+}
+
+.taskbar-buttons {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  padding-right: 4px;
+}
+
+.taskbar-btn {
+  padding: 4px 8px;
+  background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
+  border: 2px outset #c0c0c0;
+  border-radius: 2px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  min-width: 60px;
+  text-align: center;
+}
+
+.taskbar-btn:hover {
+  background: linear-gradient(180deg, #f0f0f0 0%, #dfdfdf 100%);
+}
+
+.taskbar-btn:active {
+  border-style: inset;
+}
+
+.draggable-container {
+  position: fixed;
+  min-width: 20%;
+  min-height: 20%;
+  width: auto;
+  height: auto;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080, 2px 2px 5px rgba(0, 0, 0, 0.3);
+  top: 60px;
+  left: 80px;
+  z-index: 1000;
+  user-select: none;
+  display: none;
+}
+
+.draggable-container.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-header {
+  background: linear-gradient(90deg, #000080 0%, #1084d7 100%);
+  color: white;
+  padding: 2px 4px;
+  cursor: move;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  user-select: none;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+.container-header:active {
+  opacity: 0.9;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: #612638;
+}
+
+.container-content {
+  color: #000000;
+  line-height: 1.4;
+  background-color: #c0c0c0;
+  flex: 0 1 auto;
+  overflow: auto;
+  font-size: 13px;
+  white-space: normal;
+  word-wrap: break-word;
+  height: 100%;
+}
+
+.container-content p,
+.container-content h3 {
+  margin: 4px 0;
+}
+
+.now-playing {
+  margin-top: 10px;
+  padding: 10px;
+  background: #e0e0e0;
+  border-radius: 4px;
+}
+
+.container-content ul {
+  padding-left: 20px;
+}
+
+.container-content li {
+  margin: 2px 0;
+}
+
+.cafe-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.cafe-bg,
+.cafe-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.cafe-bg {
+  z-index: 1;
+}
+
+.cafe-overlay {
+  z-index: 2;
+}
+
+.cafe-content .cafe-next {
+  display: none;
+}
+
+.cafe-content.entered .cafe-initial {
+  display: none;
+}
+
+.cafe-content.entered .cafe-next {
+  display: block;
+}
+
+.cafe-toggle-btn {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background:  transparent;
+  font-family: 'Pixelify Sans', sans-serif;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  image-rendering: pixelated;
+  color: white;
+  cursor: pointer;
+  font-size: 40px;
+  opacity: 0;
+  visibility: hidden;
+  scale: 1;
+  transition: scale 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  border: none;
+}
+
+.cafe-content:hover .cafe-toggle-btn {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.cafe-toggle-btn:hover {
+  scale: 1.1;
+  transition: scale 0.2s ease;
+}
+
+.cafe-chatbox {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 35%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #c0c0c0;
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080;
+  padding: 8px;
+  display: none;
+  z-index: 9999;
+}
+
+.cafe-piano {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.26);
+  color:white;
+  font-size: 30px;
+  box-shadow: 1px 8px 8px 2px rgba(0, 0, 0, 0.2);
+  top: 7%;
+  left: 5%;
+  width: 35%;
+  height: auto;
+  padding: 8px;
+  display: none;
+  z-index: 9999;
+}
+
+.cafe-piano-btn{
+  align-self: flex-end; 
+  font-family: 'Pixelify Sans', sans-serif; 
+  color: #e3ddd1; 
+  background-color: #612638; 
+  border: 2px solid #562923; 
+  padding: 5px 10px; 
+  border-radius: 0; 
+  cursor: pointer;
+}
+
+.links-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 1;
+}
+
+.links-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
