@@ -2,9 +2,9 @@ import { DraggableContainer } from './draggable-container.js';
 import { stopPlaying } from './cafe-piano.js';
 
 const containers = {
-  cafe: new DraggableContainer('cafe-window', { width: '70%', height: '80%', top: '100px', left: '220px' }),
-  links: new DraggableContainer('links-window', { width: '50%', height: '70%', top: '40px', left: '244px' }),
-  about: new DraggableContainer('about-window', { width: '380px', height: '280px', top: '140px', left: '120px' })
+  cafe: new DraggableContainer('cafe-window', { width: '70%', height: '80%', top: '6%', left: '12%' }),
+  links: new DraggableContainer('links-window', { width: '50%', height: '70%', top: '5%', left: '10%' }),
+  about: new DraggableContainer('about-window', { width: '40%', height: '60%', top: '10%', left: '40%' })
 };
 
 function setupDesktopIcons() {
