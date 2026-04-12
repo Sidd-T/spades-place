@@ -1,6 +1,6 @@
 body {
   background-color: #3e4055;
-  background-image: url("https://www.transparenttextures.com/patterns/grid-me.png");
+  background-image: url("/assets/grid-me.png");
   background-attachment: fixed;
   background-repeat: repeat;
   overflow: hidden;
@@ -74,7 +74,7 @@ body[data-auth="logged-in"] .logged-in-hide {
   right: 0;
   height: 6%;
   background-color: #323230;
-  background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
+  background-image: url("/assets/axiom-pattern.png");
   border-top: 2px solid #0b1016;
   border-bottom: 2px solid #0b1016;
   display: flex;
@@ -345,7 +345,7 @@ body[data-auth="logged-in"] .logged-in-hide {
 .cafe-piano-btn:disabled,
 .cafe-piano-btn[disabled]{
   color: #666666;
-  cursor:auto;
+  cursor:auto
 }
 
 .links-bg {
