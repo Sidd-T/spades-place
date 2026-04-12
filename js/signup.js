@@ -93,7 +93,7 @@ async function signUp(email, username, password) {
   console.log("User signed up!");
 }
 
-async function loadProfile() {
+export async function loadProfile() {
   const {
     data: { user },
     error: userError,
@@ -119,6 +119,8 @@ async function loadProfile() {
   // Update UI
   document.getElementById("profile-username").textContent = data.username;
   document.getElementById("profile-avatar").src = data.avatar_url;
+
+  return { username: data.username, avatar_url: data.avatar_url };
 }
 
 async function updateProfile(username, avatarUrl) {
@@ -173,11 +175,11 @@ document.getElementById("signoutBtn").addEventListener("click", async () => {
 
 sb.auth.onAuthStateChange((event, session) => {
   if (event === "SIGNED_IN") {
-    console.log("User signed in:", session?.user);
+    console.log("User is signed in:", session?.user);
     document.body.setAttribute("data-auth", "logged-in");
     loadProfile();
   } else if (event === "SIGNED_OUT") {
-    console.log("User signed in:", session?.user);
+    console.log("User signed out:", session?.user);
     document.body.setAttribute("data-auth", "logged-out");
   }
 });

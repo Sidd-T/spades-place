@@ -71,28 +71,13 @@
           ></iframe>
         </div>
         <div alt="piano info" class="cafe-piano cafe-next">
-          <h2>Spades' Cafe</h2>
+          <p class="cafe-title">Spades' Cafe</p>
           <p>Current Player: <strong id="currentPlayer">None</strong></p>
 
-          <input
-            id="nameInput"
-            placeholder="Enter your name"
-            style="
-              width: 70%;
-              font-family: &quot;Pixelify Sans&quot;, sans-serif;
-              background-color: #f0f0f0;
-              border: 2px solid #000;
-              padding: 5px;
-              border-radius: 0;
-            "
-          />
-          <div
-            id="cafeButtons"
-            ,
-            class="display: flex; margin-top: 5px; gap: 10px;"
-          >
-            <button id="joinBtn" class="cafe-piano-btn">Start Playing</button>
-            <button id="leaveBtn" class="cafe-piano-btn">Stop Playing</button>
+          <div class="logged-in-hide">Please Log in to play</div>
+          <div id="cafeButtons logged-in-show" class="display: flex; margin-top: 5px; gap: 10px;">
+            <button id="joinBtn" class="cafe-piano-btn" disabled>Start Playing</button>
+            <button id="leaveBtn" class="cafe-piano-btn" disabled>Stop Playing</button>
           </div>
 
           <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>

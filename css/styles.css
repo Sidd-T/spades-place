@@ -324,6 +324,13 @@ body[data-auth="logged-in"] .logged-in-hide {
   z-index: 9999;
 }
 
+.cafe-title {
+  font-size: 50px;
+  font-family: "Pixelify Sans", sans-serif;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
 .cafe-piano-btn {
   align-self: flex-end;
   font-family: "Pixelify Sans", sans-serif;
@@ -333,6 +340,12 @@ body[data-auth="logged-in"] .logged-in-hide {
   padding: 5px 10px;
   border-radius: 0;
   cursor: pointer;
+}
+
+.cafe-piano-btn:disabled,
+.cafe-piano-btn[disabled]{
+  color: #666666;
+  cursor:auto;
 }
 
 .links-bg {

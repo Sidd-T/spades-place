@@ -1,3 +1,5 @@
+import { loadProfile } from "./signup.js";
+
 const SUPABASE_URL = "https://hpmafvcceagrsuiabjgl.supabase.co";
 const SUPABASE_KEY = "sb_publishable_VJuwHZm8vXXMb4ygZv4jrw_V5DgaEwA";
 
@@ -13,7 +15,8 @@ let myName = null;
 let currentPlayer = null;
 
 const currentPlayerEl = document.getElementById("currentPlayer");
-const statusEl = document.getElementById("status");
+const joinBtn = document.getElementById("joinBtn");
+const leaveBtn = document.getElementById("leaveBtn");
 
 async function initAudio() {
   if (!synth) {
@@ -33,26 +36,18 @@ async function fetchCurrentPlayer() {
 
   currentPlayer = data[0]?.current_player;
   currentPlayerEl.innerText = currentPlayer || "None";
-
-  if (currentPlayer !== null && currentPlayer !== myName) {
-    document.getElementById("joinBtn").disabled = true;
-    document.getElementById("leaveBtn").disabled = true;
-  } else {
-    document.getElementById("joinBtn").disabled = false;
-    document.getElementById("leaveBtn").disabled = true;
-  }
 }
 
 document.getElementById("joinBtn").addEventListener("click", async () => {
-  const name = document.getElementById("nameInput").value.trim();
-  if (!name) return;
+  const { username, avatar_url } = await loadProfile();
+  if (!username) return;
 
-  console.log("Attempting to join as", name);
+  console.log("Attempting to join as", username);
   await initAudio();
 
   const { error } = await sb
     .from("room_state")
-    .update({ current_player: name })
+    .update({ current_player: username })
     .eq("id", 1)
     .select();
 
@@ -61,9 +56,9 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
     return;
   }
 
-  myName = name;
-  document.getElementById("joinBtn").disabled = true;
-  document.getElementById("leaveBtn").disabled = false;
+  myName = username;
+  joinBtn.disabled = true;
+  leaveBtn.disabled = false;
   fetchCurrentPlayer();
 });
 
@@ -74,8 +69,8 @@ document.getElementById("leaveBtn").addEventListener("click", async () => {
 export async function stopPlaying() {
   await sb.from("room_state").update({ current_player: null }).eq("id", 1);
 
-  document.getElementById("joinBtn").disabled = false;
-  document.getElementById("leaveBtn").disabled = true;
+  joinBtn.disabled = false;
+  leaveBtn.disabled = true;
 
   fetchCurrentPlayer();
 }
@@ -177,7 +172,15 @@ function stopNote(note, send) {
   }
 }
 
+function disableJoin() {
+  if (currentPlayer !== null && currentPlayer !== myName) {
+    joinBtn.disabled = true;
+    leaveBtn.disabled = true;
+  }
+}
+
 // INIT
 fetchCurrentPlayer();
+disableJoin();
 setupRealtime();
 setupMIDI();
