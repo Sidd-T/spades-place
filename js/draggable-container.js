@@ -12,6 +12,10 @@ export class DraggableContainer {
 
     this.applySizeOptions();
     this.init();
+
+    if (this.options.showByDefault) {
+      this.show();
+    }
   }
 
   applySizeOptions() {

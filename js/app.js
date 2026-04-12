@@ -19,6 +19,7 @@ const containers = {
     height: "70%",
     top: "10%",
     left: "40%",
+    showByDefault: true,
   }),
   signup: new DraggableContainer("signup-window", {
     width: "40%",
