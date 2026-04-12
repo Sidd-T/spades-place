@@ -6,11 +6,27 @@ body {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  font-family: 'Pixelify Sans', sans-serif;
+  font-family: "Pixelify Sans", sans-serif;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: never;
   image-rendering: pixelated;
+}
+
+.logged-in-hide {
+  display: block;
+}
+.logged-in-show {
+  display: none;
+}
+
+/* Auth */
+body[data-auth="logged-in"] .logged-in-show {
+  display: block;
+}
+
+body[data-auth="logged-in"] .logged-in-hide {
+  display: none;
 }
 
 /* Desktop Icons */
@@ -57,8 +73,7 @@ body {
   left: 0;
   right: 0;
   height: 6%;
-  background-color: 
-#323230;
+  background-color: #323230;
   background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
   border-top: 2px solid #0b1016;
   border-bottom: 2px solid #0b1016;
@@ -67,7 +82,7 @@ body {
   padding: 0 4px;
   gap: 4px;
   z-index: 5000;
-  box-shadow: inset 1px 1px 0 #ffffff
+  box-shadow: inset 1px 1px 0 #ffffff;
 }
 
 .taskbar-logo {
@@ -93,19 +108,17 @@ body {
 }
 
 .taskbar-btn {
-  padding: 4px 8px;
-  background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
-  border: 2px outset #c0c0c0;
-  border-radius: 2px;
-  font-size: 12px;
+  font-family: "Pixelify Sans", sans-serif;
+  color: #e3ddd1;
+  background-color: #382d35;
+  border: 2px solid #a6884a;
+  padding: 5px 10px;
+  border-radius: 0;
   cursor: pointer;
-  transition: all 0.1s ease;
-  min-width: 60px;
-  text-align: center;
 }
 
 .taskbar-btn:hover {
-  background: linear-gradient(180deg, #f0f0f0 0%, #dfdfdf 100%);
+  scale: 1.1;
 }
 
 .taskbar-btn:active {
@@ -121,7 +134,10 @@ body {
   background-color: #c0c0c0;
   border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
-  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080, 2px 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #808080,
+    2px 2px 5px rgba(0, 0, 0, 0.3);
   top: 60px;
   left: 80px;
   z-index: 1000;
@@ -245,8 +261,8 @@ body {
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
-  background:  transparent;
-  font-family: 'Pixelify Sans', sans-serif;
+  background: transparent;
+  font-family: "Pixelify Sans", sans-serif;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: never;
@@ -257,9 +273,17 @@ body {
   opacity: 0;
   visibility: hidden;
   scale: 1;
-  transition: scale 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+  transition:
+    scale 0.2s ease,
+    opacity 0.2s ease,
+    visibility 0.2s ease;
   pointer-events: none;
   border: none;
+}
+
+.cafe-toggle-btn:disabled {
+  cursor: auto;
+  visibility: hidden;
 }
 
 .cafe-content:hover .cafe-toggle-btn {
@@ -288,7 +312,7 @@ body {
 .cafe-piano {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.26);
-  color:white;
+  color: white;
   font-size: 30px;
   box-shadow: 1px 8px 8px 2px rgba(0, 0, 0, 0.2);
   top: 7%;
@@ -300,14 +324,14 @@ body {
   z-index: 9999;
 }
 
-.cafe-piano-btn{
-  align-self: flex-end; 
-  font-family: 'Pixelify Sans', sans-serif; 
-  color: #e3ddd1; 
-  background-color: #612638; 
-  border: 2px solid #562923; 
-  padding: 5px 10px; 
-  border-radius: 0; 
+.cafe-piano-btn {
+  align-self: flex-end;
+  font-family: "Pixelify Sans", sans-serif;
+  color: #e3ddd1;
+  background-color: #612638;
+  border: 2px solid #562923;
+  padding: 5px 10px;
+  border-radius: 0;
   cursor: pointer;
 }
 
@@ -370,7 +394,7 @@ body {
 }
 
 .code-area {
-  font-family: 'Pixelify Sans', sans-serif;
+  font-family: "Pixelify Sans", sans-serif;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: never;
@@ -378,7 +402,9 @@ body {
   background-color: #212528;
   color: #e3ddd1;
   border: 1px solid #5f7b53;
-  box-shadow: inset 1px 1px 0 #5f7b53, inset -1px -1px 0 #5f7b53;
+  box-shadow:
+    inset 1px 1px 0 #5f7b53,
+    inset -1px -1px 0 #5f7b53;
   padding: 8px;
   margin-top: 4px;
   font-size: 14px;

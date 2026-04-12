@@ -1,12 +1,17 @@
- <!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="assets/spade_logo_filled.png" type="image/gif" />
-    <link href="https://fonts.googleapis.com/css?family=Pixelify+Sans" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pixelify+Sans"
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spades' Place</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/signup.css" />
+    <link rel="stylesheet" href="css/profile.css" />
   </head>
   <body>
     <!-- Desktop Icons -->
@@ -20,53 +25,79 @@
         <span class="icon-label">Links</span>
       </div>
       <div class="desktop-icon" data-container="about">
-        <img src="assets/spade_logo_filled.png" alt="About" class="icon-image" />
+        <img
+          src="assets/spade_logo_filled.png"
+          alt="About"
+          class="icon-image"
+        />
         <span class="icon-label">About</span>
+      </div>
+      <div class="desktop-icon" data-container="profile">
+        <img src="assets/pfp.png" alt="Profile" class="icon-image" />
+        <span class="icon-label">Profile</span>
       </div>
     </div>
 
     <!-- Draggable Windows -->
-    <div class="draggable-container" id="media-window">
-      <div class="container-header">
-        <span>🎵 Media Player</span>
-        <button class="close-btn">×</button>
-      </div>
-      <div class="container-content">
-        <p>Welcome to the Media Player!</p>
-        <p>This window contains your audio and video files.</p>
-        <div class="now-playing">
-          ▶ Now Playing: Retro Vibes.mp3
-        </div>
-      </div>
-    </div>
-
     <div class="draggable-container" id="cafe-window">
       <div class="container-header">
         <span>Where does this hole lead...</span>
         <button class="close-btn">×</button>
       </div>
       <div class="container-content cafe-content">
-        <img src="assets/lake.gif" alt="lake gif" class="cafe-bg cafe-initial" />
-        <img src="assets/hole.gif" alt="hole" class="cafe-overlay cafe-initial" />
+        <img
+          src="assets/lake.gif"
+          alt="lake gif"
+          class="cafe-bg cafe-initial"
+        />
+        <img
+          src="assets/hole.gif"
+          alt="hole"
+          class="cafe-overlay cafe-initial"
+        />
         <img src="assets/room.png" alt="room" class="cafe-bg cafe-next" />
         <img src="assets/hole2.gif" alt="hole" class="cafe-overlay cafe-next" />
         <div alt="chatbox" class="cafe-chatbox cafe-next">
-          <iframe src="https://www3.cbox.ws/box/?boxid=3554186&boxtag=AH6Pyu" width="100%" height="100%" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>	
+          <iframe
+            src="https://www3.cbox.ws/box/?boxid=3554186&boxtag=AH6Pyu"
+            width="100%"
+            height="100%"
+            allowtransparency="yes"
+            allow="autoplay"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            scrolling="auto"
+          ></iframe>
         </div>
         <div alt="piano info" class="cafe-piano cafe-next">
-          <h3>Spades' Cafe</h2>
-            <p>Current Player: <strong id="currentPlayer">None</strong></p>
+          <h2>Spades' Cafe</h2>
+          <p>Current Player: <strong id="currentPlayer">None</strong></p>
 
-            <input id="nameInput" placeholder="Enter your name" style="width: 70%; font-family: 'Pixelify Sans', sans-serif; background-color: #f0f0f0; border: 2px solid #000; padding: 5px; border-radius: 0;" />
-            <div id="cafeButtons", class="display: flex; margin-top: 5px; gap: 10px;">
-              <button id="joinBtn" class="cafe-piano-btn">Start Playing</button>
-              <button id="leaveBtn" class="cafe-piano-btn">Stop Playing</button>
-            </div>
-            <p id="status" style="font-family: 'Pixelify Sans', sans-serif; font-size: 12px; margin-top: 4px;"></p>
+          <input
+            id="nameInput"
+            placeholder="Enter your name"
+            style="
+              width: 70%;
+              font-family: &quot;Pixelify Sans&quot;, sans-serif;
+              background-color: #f0f0f0;
+              border: 2px solid #000;
+              padding: 5px;
+              border-radius: 0;
+            "
+          />
+          <div
+            id="cafeButtons"
+            ,
+            class="display: flex; margin-top: 5px; gap: 10px;"
+          >
+            <button id="joinBtn" class="cafe-piano-btn">Start Playing</button>
+            <button id="leaveBtn" class="cafe-piano-btn">Stop Playing</button>
+          </div>
 
-            <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-            <script type="module" src="js/cafe-piano.js"></script>
+          <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+          <script type="module" src="js/cafe-piano.js"></script>
         </div>
         <button class="cafe-toggle-btn" type="button">Enter?</button>
       </div>
@@ -88,14 +119,150 @@
         <button class="close-btn">×</button>
       </div>
       <div class="container-content about-content">
-        <img src="assets/spade-card.png" alt="spades background" class="about-bg" />
+        <img
+          src="assets/spade-card.png"
+          alt="spades background"
+          class="about-bg"
+        />
         <div class="about-overlay">
-          <h style="font-size: 40px;">Spades' Place</h>
-          <p>hi<br><br> i'm spades, this is my website made for fun, if you want to know more, check out my personal portfolio:</p>
-          <a href="https://portfolio-n510.vercel.app" target="_blank" style="color: #5f7b53; text-decoration: underline;">portfolio-of-spades.vercel.app</a>
-          <p style="padding-top: 16px;">otherwise, check out the cafe, or link my button:</p>
-          <textarea class="scroll code-area">&lt;a href=&quot;https://spades-place.neocities.org&quot; target="_blank"/&gt;&lt;img src=&quot;https://spades-place.neocities.org/assets/button.gif&quot; alt=&quot;Spades' Place&quot;&gt;
+          <h style="font-size: 40px">Spades' Place</h>
+          <p>
+            hi<br /><br />
+            i'm spades, this is my website made for fun, if you want to know
+            more, check out my personal portfolio:
+          </p>
+          <a
+            href="https://portfolio-n510.vercel.app"
+            target="_blank"
+            style="color: #5f7b53; text-decoration: underline"
+            >portfolio-of-spades.vercel.app</a
+          >
+          <p style="padding-top: 16px">
+            otherwise, check out the cafe, or link my button:
+          </p>
+          <textarea class="scroll code-area">
+&lt;a href=&quot;https://spades-place.neocities.org&quot; target="_blank"/&gt;&lt;img src=&quot;https://spades-place.neocities.org/assets/button.gif&quot; alt=&quot;Spades' Place&quot;&gt;
           </textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="draggable-container" id="signup-window">
+      <div class="container-header">
+        <span>Sign up or Log in</span>
+        <button class="close-btn">×</button>
+      </div>
+      <div class="container-content about-content">
+        <img
+          src="assets/spade-card-2.png"
+          alt="spades background"
+          class="about-bg"
+        />
+        <div class="about-overlay">
+          <div class="signup-wrapper">
+            <div class="card-switch">
+              <label class="switch">
+                <input type="checkbox" class="toggle" />
+                <span class="slider"></span>
+                <span class="card-side"></span>
+                <div class="flip-card__inner">
+                  <div class="flip-card__front">
+                    <form class="flip-card__form" id="login-form">
+                      <input
+                        class="flip-card__input"
+                        id="login-username"
+                        placeholder="Username"
+                        type="name"
+                      />
+                      <input
+                        class="flip-card__input"
+                        id="login-password"
+                        placeholder="Password"
+                        type="password"
+                      />
+                      <input
+                        type="submit"
+                        class="flip-card__btn"
+                        value="Log In"
+                      />
+                    </form>
+                    <div class="error-message"></div>
+                  </div>
+                  <div class="flip-card__back">
+                    <form class="flip-card__form" id="signup-form">
+                      <input
+                        class="flip-card__input"
+                        id="signup-username"
+                        placeholder="Name"
+                        type="name"
+                      />
+                      <input
+                        class="flip-card__input"
+                        id="signup-email"
+                        placeholder="Email"
+                        type="email"
+                      />
+                      <input
+                        class="flip-card__input"
+                        id="signup-password"
+                        placeholder="Password"
+                        type="password"
+                      />
+                      <input
+                        type="submit"
+                        class="flip-card__btn"
+                        value="Sign Up"
+                      />
+                    </form>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="draggable-container" id="profile-window">
+      <div class="container-header">
+        <span>who are you...</span>
+        <button class="close-btn">×</button>
+      </div>
+      <div class="container-content about-content">
+        <img
+          src="assets/spade-card-2.png"
+          alt="spades background"
+          class="about-bg"
+        />
+        <div class="about-overlay">
+          <!-- Logged OUT message -->
+          <div class="logged-in-hide">
+            <p class="login-warning">Profile</p>
+            <p class="login-text">Log in first</p>
+            <button
+              class="profile-signup-btn logged-in-hide signupBtn"
+              id="signup"
+              data-container="signup"
+            >
+              Sign Up / Log In
+            </button>
+          </div>
+
+          <!-- Logged IN profile editor -->
+          <div class="logged-in-show profile-container">
+            <div class="profile-header">
+              <img id="profile-avatar" class="avatar-box-img" src="assets/pfp.png" alt="avatar" />
+              <h2 id="profile-username">Username</h2>
+            </div>
+            <form id="profile-form" class="profile-form">
+              <input type="text" id="update-username" placeholder="New username"/>
+              <input type="text" id="update-avatar" placeholder="Avatar URL">
+              <button type="submit">Save Changes</button>
+            </form>
+            <div id="profile-error" class="error-message-profile">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -103,12 +270,23 @@
     <!-- Taskbar -->
     <div class="taskbar">
       <a class="taskbar-logo">
-        <img src="assets/button.gif" alt="Logo"/>
+        <img src="assets/button.gif" alt="Logo" />
       </a>
       <div class="taskbar-buttons">
+        <button
+          class="taskbar-btn logged-in-hide signupBtn"
+          id="signupBtn"
+          data-container="signup"
+        >
+          Sign Up / Log In
+        </button>
+        <button class="taskbar-btn logged-in-show" id="signoutBtn">
+          Sign Out
+        </button>
       </div>
     </div>
 
     <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/signup.js"></script>
   </body>
 </html>

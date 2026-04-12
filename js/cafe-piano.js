@@ -1,6 +1,9 @@
 const SUPABASE_URL = "https://hpmafvcceagrsuiabjgl.supabase.co";
 const SUPABASE_KEY = "sb_publishable_VJuwHZm8vXXMb4ygZv4jrw_V5DgaEwA";
 
+const TIME_LIMIT = 12 * 60 * 1000;
+const COOLDOWN = 30000;
+
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let synth = null;
@@ -9,7 +12,6 @@ let channel = null;
 let myName = null;
 let currentPlayer = null;
 
-// UI
 const currentPlayerEl = document.getElementById("currentPlayer");
 const statusEl = document.getElementById("status");
 
@@ -22,10 +24,7 @@ async function initAudio() {
 }
 
 async function fetchCurrentPlayer() {
-  const { data, error } = await sb
-    .from("room_state")
-    .select("current_player")
-
+  const { data, error } = await sb.from("room_state").select("current_player");
 
   if (error) {
     console.error(error);
@@ -34,25 +33,27 @@ async function fetchCurrentPlayer() {
 
   currentPlayer = data[0]?.current_player;
   currentPlayerEl.innerText = currentPlayer || "None";
+
+  if (currentPlayer !== null && currentPlayer !== myName) {
+    document.getElementById("joinBtn").disabled = true;
+    document.getElementById("leaveBtn").disabled = true;
+  } else {
+    document.getElementById("joinBtn").disabled = false;
+    document.getElementById("leaveBtn").disabled = true;
+  }
 }
 
-document.getElementById("joinBtn").addEventListener('click', async() => {
+document.getElementById("joinBtn").addEventListener("click", async () => {
   const name = document.getElementById("nameInput").value.trim();
   if (!name) return;
 
-  console.log(currentPlayer, name);
-  if (name !== currentPlayer && currentPlayer !== null) {
-    statusEl.innerText = "Someone else is already playing";
-    return;
-  }
-
   console.log("Attempting to join as", name);
   await initAudio();
-  
-  const { data, error } = await sb
+
+  const { error } = await sb
     .from("room_state")
     .update({ current_player: name })
-    .eq('id', 1)
+    .eq("id", 1)
     .select();
 
   if (error) {
@@ -60,38 +61,26 @@ document.getElementById("joinBtn").addEventListener('click', async() => {
     return;
   }
 
-  console.log(data);
-  if (data.length === 0) {
-    statusEl.innerText = "Someone else is already playing";
-  } else {
-    myName = name;
-    statusEl.innerText = "You are now playing";
-    fetchCurrentPlayer()
-  }
+  myName = name;
+  document.getElementById("joinBtn").disabled = true;
+  document.getElementById("leaveBtn").disabled = false;
+  fetchCurrentPlayer();
 });
 
-document.getElementById("leaveBtn").addEventListener('click', async () => {
-  stopPlaying()
+document.getElementById("leaveBtn").addEventListener("click", async () => {
+  stopPlaying();
 });
 
 export async function stopPlaying() {
-  if (myName !== currentPlayer && myName !== null) {
-    statusEl.innerText = "You are not the current player";
-    return;
-  }
+  await sb.from("room_state").update({ current_player: null }).eq("id", 1);
 
-  await sb
-    .from("room_state")
-    .update({ current_player: null })
-    .eq('id', 1)
+  document.getElementById("joinBtn").disabled = false;
+  document.getElementById("leaveBtn").disabled = true;
 
-  statusEl.innerText = "You stopped playing";
-  fetchCurrentPlayer()
+  fetchCurrentPlayer();
 }
 
-
 function setupRealtime() {
-
   channel = sb.channel("midi-room");
 
   channel.on("broadcast", { event: "note" }, ({ payload }) => {
@@ -105,8 +94,7 @@ function setupRealtime() {
   channel.subscribe();
 
   // Listen for DB changes
-  sb
-    .channel("room-state-listener")
+  sb.channel("room-state-listener")
     .on(
       "postgres_changes",
       {
@@ -117,7 +105,7 @@ function setupRealtime() {
       (payload) => {
         currentPlayer = payload.new.current_player;
         updateUI();
-      }
+      },
     )
     .subscribe();
 }
