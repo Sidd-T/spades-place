@@ -154,6 +154,13 @@ loginForm.addEventListener("submit", async (e) => {
   await login(username, password);
 
   loginForm.reset();
+  const signupWindow = document.getElementById("signup-window");
+  signupWindow.getElementsByClassName("close-btn")[0].click(); 
+  const icons = document.querySelectorAll('.icon-label');
+  const profile = Array.from(icons).find(el => el.textContent.trim() === 'Profile');
+  if (profile) {
+    profile.click();
+  } 
 });
 
 const signupForm = document.getElementById("signup-form");
@@ -167,6 +174,13 @@ signupForm.addEventListener("submit", async (e) => {
   await signUp(email, username, password);
 
   signupForm.reset();
+  const signupWindow = document.getElementById("signup-window");
+  signupWindow.getElementsByClassName("close-btn")[0].click(); 
+  const icons = document.querySelectorAll('.icon-label');
+  const profile = Array.from(icons).find(el => el.textContent.trim() === 'Profile');
+  if (profile) {
+    profile.click();
+  } 
 });
 
 document.getElementById("signoutBtn").addEventListener("click", async () => {
