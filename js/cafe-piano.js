@@ -13,8 +13,10 @@ let channel = null;
 
 let myName = null;
 let currentPlayer = null;
+let currentPlayerAvatar = null;
 
 const currentPlayerEl = document.getElementById("currentPlayer");
+const currentPlayerAvatarEl = document.getElementById("currentPlayerAvatar");
 const joinBtn = document.getElementById("joinBtn");
 const leaveBtn = document.getElementById("leaveBtn");
 
@@ -27,7 +29,7 @@ async function initAudio() {
 }
 
 async function fetchCurrentPlayer() {
-  const { data, error } = await sb.from("room_state").select("current_player");
+  const { data, error } = await sb.from("room_state").select();
 
   if (error) {
     console.error(error);
@@ -35,7 +37,9 @@ async function fetchCurrentPlayer() {
   }
 
   currentPlayer = data[0]?.current_player;
+  currentPlayerAvatar = data[0]?.current_player_avatar;
   currentPlayerEl.innerText = currentPlayer || "None";
+  currentPlayerAvatarEl.src = currentPlayerAvatar || "/assets/pfp.png";
 }
 
 document.getElementById("joinBtn").addEventListener("click", async () => {
@@ -47,7 +51,7 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
 
   const { error } = await sb
     .from("room_state")
-    .update({ current_player: username })
+    .update({ current_player: username, current_player_avatar: avatar_url })
     .eq("id", 1)
     .select();
 
@@ -67,7 +71,7 @@ document.getElementById("leaveBtn").addEventListener("click", async () => {
 });
 
 export async function stopPlaying() {
-  await sb.from("room_state").update({ current_player: null }).eq("id", 1);
+  await sb.from("room_state").update({ current_player: null, current_player_avatar: null }).eq("id", 1);
 
   joinBtn.disabled = false;
   leaveBtn.disabled = true;

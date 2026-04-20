@@ -1,5 +1,7 @@
 const SUPABASE_URL = "https://hpmafvcceagrsuiabjgl.supabase.co";
 const SUPABASE_KEY = "sb_publishable_VJuwHZm8vXXMb4ygZv4jrw_V5DgaEwA";
+const MAX_FILE_SIZE = 50 * 1024; //50kb
+const ALLOWED_TYPES = ["image/png", "image/jpeg"];
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -123,27 +125,81 @@ export async function loadProfile() {
   return { username: data.username, avatar_url: data.avatar_url };
 }
 
-async function updateProfile(username, avatarUrl) {
+async function updateProfile(username) {
   const {
     data: { user },
   } = await sb.auth.getUser();
 
+  const fileInput = document.getElementById("update-avatar");
+  const file = fileInput.files[0];
+
+  let avatarUrl = null;
+  let avatarPath = null;
+
+  // Validate file
+  if (file) {
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      setError("Only PNG, JPEG are allowed.");
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      setError("File must be under 50kb.");
+      return;
+    }
+
+    // Get current avatar (for deletion)
+    const { data: currentProfile } = await sb
+      .from("profiles")
+      .select("avatar_path")
+      .eq("id", user.id)
+      .single();
+
+    // Upload new file
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+    avatarPath = `${user.id}/${fileName}`;
+
+    const { error: uploadError } = await sb.storage
+      .from("avatars")
+      .upload(avatarPath, file);
+
+    if (uploadError) {
+      setError(uploadError.message);
+      return;
+    }
+
+    // Delete old avatar (if exists)
+    if (currentProfile?.avatar_path) {
+      await sb.storage
+        .from("avatars")
+        .remove([currentProfile.avatar_path]);
+    }
+
+    // Get public URL
+    const { data } = sb.storage
+      .from("avatars")
+      .getPublicUrl(avatarPath);
+
+    avatarUrl = data.publicUrl;
+  }
+
+  // Update profile
   const { error } = await sb
     .from("profiles")
     .update({
       username: username,
-      avatar_url: avatarUrl,
+      ...(avatarUrl && { avatar_url: avatarUrl }),
+      ...(avatarPath && { avatar_path: avatarPath }),
     })
     .eq("id", user.id);
 
   if (error) {
-    console.error("Profile error:", error.message);
-    document.getElementById("profile-error").textContent = error.message;
+    setError(error.message);
   } else {
     await loadProfile();
   }
 }
-
 const loginForm = document.getElementById("login-form");
 
 loginForm.addEventListener("submit", async (e) => {
@@ -204,8 +260,7 @@ profileForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const username = document.getElementById("update-username").value;
-  const avatarUrl = document.getElementById("update-avatar").value;
-  await updateProfile(username, avatarUrl);
+  await updateProfile(username);
 
   profileForm.reset();
 });

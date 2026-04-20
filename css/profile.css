@@ -1,6 +1,6 @@
 /* Container */
 .profile-container {
-  width: 50%;
+  width: 100%;
   height: 80%;
    --input-focus: #906c30;
   --font-color: #e3ddd1;
@@ -13,6 +13,20 @@
   -moz-osx-font-smoothing: grayscale;
   font-smooth: never;
   image-rendering: pixelated;
+}
+
+.profile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #e3ddd1;
+  font-size: 20px;
+  padding-left: 3rem;
+  padding-top: 3rem;
+  width: 80%;
+  height: 100%;
+  z-index: 2;
+  overflow: auto;
 }
 
 /* Logged out text */
@@ -50,8 +64,8 @@
 }
 
 .avatar-box-img {
-  width: 100%;
-  height: 100%;
+  width: 20%;
+  height: 20%;
   object-fit: cover;
   border: 2px solid #e3ddd1;
 }
@@ -91,6 +105,33 @@
   border: 2px solid var(--input-focus);
 }
 
+.profile-form input[type="file"] {
+  width: 50%;
+  height: 2rem;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.profile-form input[type="file"]::file-selector-button {
+  height: 100%;
+  border: none;
+  border-radius: 2px;
+  border-right: 2px solid var(--main-color);
+  background-color: var(--main-color);
+  color: var(--bg-color);
+  font-weight: 600;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .profile-form button:active,
 .button-confirm:active {
   box-shadow: 0px 0px var(--main-color);
@@ -108,5 +149,6 @@
   font-weight: 600;
   color: var(--font-color);
   cursor: pointer;
+  width: 40%;
   
 }

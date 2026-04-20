@@ -204,13 +204,6 @@ body[data-auth="logged-in"] .logged-in-hide {
   margin: 4px 0;
 }
 
-.now-playing {
-  margin-top: 10px;
-  padding: 10px;
-  background: #e0e0e0;
-  border-radius: 4px;
-}
-
 .container-content ul {
   padding-left: 20px;
 }
@@ -253,6 +246,16 @@ body[data-auth="logged-in"] .logged-in-hide {
 
 .cafe-content.entered .cafe-next {
   display: block;
+}
+
+.cafe-avatar {
+  width: 15%;
+  height: 15%;
+  border-radius: 5%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 8px;
+  border: 1px solid #e3ddd1;
 }
 
 .cafe-toggle-btn {
@@ -401,9 +404,10 @@ body[data-auth="logged-in"] .logged-in-hide {
   font-size: 20px;
   padding-left: 3rem;
   padding-top: 3rem;
-  width: 40%;
+  width: 80%;
   height: 100%;
   z-index: 2;
+  overflow: auto;
 }
 
 .code-area {

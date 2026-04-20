@@ -83,10 +83,10 @@
           </div>
           <div alt="piano info" class="cafe-piano cafe-next">
             <p class="cafe-title">Spades' Cafe</p>
-            <p>Current Player: <strong id="currentPlayer">None</strong></p>
+            <p>Current Player: <br><span><img class="cafe-avatar" id="currentPlayerAvatar" src="" alt="Player Avatar" /></span><strong id="currentPlayer">None</strong></p>
 
             <div class="logged-in-hide">Please Log in to play</div>
-            <div id="cafeButtons" class="display: flex; margin-top: 5px; gap: 10px;">
+            <div id="cafeButtons" style="display: flex; margin-top: 20px; gap: 10px;">
               <button id="joinBtn" class="cafe-piano-btn logged-in-show" disabled>Start Playing</button>
               <button id="leaveBtn" class="cafe-piano-btn logged-in-show" disabled>Stop Playing</button>
             </div>
@@ -231,7 +231,7 @@
             alt="spades background"
             class="about-bg"
           />
-          <div class="about-overlay">
+          <div class="profile-overlay">
             <!-- Logged OUT message -->
             <div class="logged-in-hide">
               <p class="login-warning">Profile</p>
@@ -253,7 +253,7 @@
               </div>
               <form id="profile-form" class="profile-form">
                 <input type="text" id="update-username" placeholder="New username"/>
-                <input type="text" id="update-avatar" placeholder="Avatar URL">
+                <input type="file" id="update-avatar" accept="image/png, image/jpeg">
                 <button type="submit">Save Changes</button>
               </form>
               <div id="profile-error" class="error-message-profile">
